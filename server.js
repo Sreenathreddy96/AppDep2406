@@ -189,7 +189,7 @@ app.delete("/deleteProfile", async (req,res) => {
   res.json({ status: "failure", msg: "Unable to delete account."});
   }
 });
-app.listen(process.env.port,()=>{
+app.listen(process.env.PORT,()=>{
     console.log(`Listening to port ${process.env.PORT}`);
 });
 
