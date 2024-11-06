@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const multer = require("multer");
+const path = require("node:path");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const dotenv = require("dotenv");
@@ -10,6 +11,7 @@ dotenv.config();
 let app = express();
 app.use(cors());
 app.use("/uploads",express.static("uploads"));
+app.use(express.static(path.join(__dirname,"/client/build")));
 
 // let authorize = (req,res,next) => {
 //   console.log("inside authorize mwf");
@@ -45,6 +47,10 @@ let userSchema = new mongoose.Schema({
 });
 
 let User = new mongoose.model("user", userSchema);
+
+app.get("*",(req,res)=>{
+  res.sendFile("./client/build/index.html");
+});
 
 app.post("/Login", upload.none(), async (req, res) => {
     console.log(req.body);
