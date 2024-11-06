@@ -195,7 +195,7 @@ app.listen(process.env.port,()=>{
 
 let connectToMDB = async ()=>{
     try{
-      mongoose.connect("mongodb+srv://sreenathlsp44:Sreenath@mern2406cluster.jyxki.mongodb.net/Players?retryWrites=true&w=majority&appName=Mern2406Cluster");
+      mongoose.connect(process.env.mdbUrl);
    console.log("Successfully connected to MDB")
     }catch(err){
         console.log("Unable to connect to MDB");
